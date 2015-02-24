@@ -57,6 +57,18 @@ class QuickAddress
     var $bFlatten    = FALSE;
     var $soap        = NULL;
 
+    /**
+     *
+     * @var string Username for accessing QAS Pro On Demand
+     */
+    private $username;
+
+    /**
+     *
+     * @var string Password for accessing QAS Pro On Demand
+     */
+    private $password;
+
     # QuickAddress constructor - suppress exception generation as we want to keep this integration code
     # PHP4 compatible
     #
@@ -98,11 +110,16 @@ class QuickAddress
             }
         }
 
+    public function setQASCredentials($username, $password) {
+        $this->username = $username;
+        $this->password = $password;
+    }
+
     # Add authentication details to soap header
     #
     private function build_auth_header()
     {
-        $b = new QAQueryHeader(USERNAME,PASSWORD);
+        $b = new QAQueryHeader($this->username, $this->password);
 
         ////$b = array('QAAuthentication'=>array('Username'=>USERNAME,'Password'=>PASSWORD),'Security'=>null);
 
