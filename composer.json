@@ -1,0 +1,24 @@
+{
+	"name": "exertis/yii2-experian-qas",
+	"description": "Experian QAS Pro On Demand Postocde lookup SOAP service integration for the Yii framework. See also http://support.qas.com/experian_qas_pro_ondemand__php_only__technical_update_2021.htm",
+	"keywords": ["yii2", "experian", "php", "qas", "pro on demand", "postcode", "lookup"],
+	"type": "yii2-extension",
+	"license": "BSD-3-Clause",
+	"support": {
+		"issues": "https://github.com/ExertisMicro-P/yii2-handlebars/issues",
+		"source": "https://github.com/ExertisMicro-P/yii2-handlebars"
+	},
+	"authors": [
+                {
+			"name": "Russell Hutson",
+			"email": "russell.hutson@exertis.co.uk",
+                        "role": "Developer"
+		}
+	],
+	"require": {
+		"yiisoft/yii2": "*"
+	},
+	"autoload": {
+		"psr-4": { "exertis\\experianqas\\": "" }
+	}
+}
