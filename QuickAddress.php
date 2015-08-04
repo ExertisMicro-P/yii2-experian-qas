@@ -125,7 +125,7 @@ class QuickAddress
 
         //$authheader = new SoapHeader('http://www.qas.com/OnDemand-2011-03','QAQueryHeader',$b);
         //$authheader = new SoapHeader('http://www.qas.com/OnDemand-2011-03','QAQueryHeader',$b, false);
-        $authheader = new SoapHeader('http://www.qas.com/OnDemand-2010-01','QAQueryHeader',$b, false);
+        $authheader = new \SoapHeader('http://www.qas.com/OnDemand-2010-01','QAQueryHeader',$b, false);
 
         $this->soap->__setSoapHeaders(array($authheader));
         //$this->soap->__setSoapHeaders($authheader);
@@ -334,6 +334,8 @@ class QuickAddress
         {
         $this->sDataSetID=$sDataSetID;
 
+        die(print_r($asSearch,true));
+
         # Concatenate each line of input to a search string delimited by line separator characters
         $sSearchString   ="";
         $bFirst          =TRUE;
@@ -520,6 +522,8 @@ class QuickAddress
         {
         $engineOld        =$this->sEngineType;
         $this->sEngineType=QAS_SINGLELINE_ENGINE;
+
+
 
         $searchResult     =$this->search($sDataSetID, $asSearch, $sPromptSet, NULL, $sRequestTag);
         $this->sEngineType=$engineOld;
