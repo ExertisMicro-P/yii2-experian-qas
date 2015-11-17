@@ -21,7 +21,7 @@ class Picklist
 
     # Picklist constructor - make sure that the picklist items are consistently an array
     #
-    function Picklist($result)
+    function __construct($result)
         {
         if (QuickAddress::check_soap($result) != NULL && ($tPicklist=$result->QAPicklist) != NULL)
             {

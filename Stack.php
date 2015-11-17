@@ -5,7 +5,7 @@ class Stack
     {
     var $aItems = array();
 
-    function Stack($sField)
+    function __construct($sField)
         {
         if (isset($_REQUEST[$sField]))
             {

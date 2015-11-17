@@ -10,7 +10,7 @@ class FormattedAddress
     {
     # FormattedAddress constructor - check for SOAP errors then call Address constructor
     #
-    function FormattedAddress($result)
+    function __construct($result)
         {
         if (QuickAddress::check_soap($result) != NULL)
             {

@@ -72,15 +72,15 @@ class QuickAddress
     # QuickAddress constructor - suppress exception generation as we want to keep this integration code
     # PHP4 compatible
     #
-    function QuickAddress($sEndpointURL)
+    function __construct($sEndpointURL)
         {
         if (defined('CONTROL_PROXY_NAME'))
             {
-            $this->soap=new SoapClient($sEndpointURL,
+            $this->soap=new \SoapClient($sEndpointURL,
                                        array('soap_version' => SOAP_1_2,
                                              'exceptions' => 0,
-                                             'classmap' => array('QAAuthentication' => 'QAAuthentication',
-                                                                 'QAQueryHeader' => 'QAQueryHeader'),
+                                             'classmap' => array('QAAuthentication' => 'exertis\experianqas\QAAuthentication',
+                                                                 'QAQueryHeader' => 'exertis\experianqas\QAQueryHeader'),
                                              'proxy_host'     => CONTROL_PROXY_NAME,
                                              'proxy_port'     => CONTROL_PROXY_PORT,
                                              'proxy_login'    => CONTROL_PROXY_LOGIN,
@@ -90,18 +90,17 @@ class QuickAddress
             }
         else
             {
-            $this->soap=new SoapClient($sEndpointURL,
+            $this->soap=new \SoapClient($sEndpointURL,
                                        array('soap_version' => SOAP_1_2,
                                              'exceptions' => 0,
                                              'connection_timeout'=>20,
-                                             'classmap' => array('QAAuthentication' => 'QAAuthentication',
-                                                                 'QAQueryHeader' => 'QAQueryHeader'),
+                                             'classmap' => array('QAAuthentication' => 'exertis\experianqas\QAAuthentication',
+                                                                 'QAQueryHeader' => 'exertis\experianqas\QAQueryHeader'),
                                            'trace' => 1 // RCH
                                              )
 
                                       );
             }
-
 
 
         if (is_soap_fault($this->soap))
@@ -135,7 +134,7 @@ class QuickAddress
 
     # Check a result for a soap fault object, and log it to the PHP log channel
     #
-    function check_soap($soapResult)
+    static function check_soap($soapResult)
         {
         if (is_soap_fault($soapResult))
             {
@@ -145,7 +144,7 @@ class QuickAddress
             error_log($err, 0);
 
             $soapResult=NULL;
-            throw new Exception($err);
+            throw new \Exception($err);
             }
 
         return ($soapResult);
@@ -334,8 +333,6 @@ class QuickAddress
         {
         $this->sDataSetID=$sDataSetID;
 
-        die(print_r($asSearch,true));
-
         # Concatenate each line of input to a search string delimited by line separator characters
         $sSearchString   ="";
         $bFirst          =TRUE;
@@ -522,8 +519,6 @@ class QuickAddress
         {
         $engineOld        =$this->sEngineType;
         $this->sEngineType=QAS_SINGLELINE_ENGINE;
-
-
 
         $searchResult     =$this->search($sDataSetID, $asSearch, $sPromptSet, NULL, $sRequestTag);
         $this->sEngineType=$engineOld;

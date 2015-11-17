@@ -10,7 +10,7 @@ class Examples
 
     # Examples constructor - check for SOAP errors, then build an address/comment array
     #
-    function Examples($result)
+    function __construct($result)
         {
         if (QuickAddress::check_soap($result) != NULL)
             {

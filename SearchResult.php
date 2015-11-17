@@ -11,7 +11,7 @@ class SearchResult
 
     # SearchResult constructor - check SOAP then attach picklist & address objects
     #
-    function SearchResult($result)
+    function __construct($result)
         {
         if (QuickAddress::check_soap($result) != NULL)
             {

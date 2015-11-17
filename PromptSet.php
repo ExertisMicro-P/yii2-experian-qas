@@ -11,7 +11,7 @@ class PromptSet
 
     # PromptSet constructor - check SOAP then make sure that prompt lines are consistently an array
     #
-    function PromptSet($result)
+    function __construct($result)
         {
         if (QuickAddress::check_soap($result) != NULL)
             {

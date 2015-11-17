@@ -12,7 +12,7 @@ class BulkSearchResult
 
     # SearchResult constructor - check SOAP then attach picklist & address objects
     #
-    function BulkSearchResult($result)
+    function __construct($result)
         {
         if (QuickAddress::check_soap($result) != NULL)
             {

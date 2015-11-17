@@ -8,7 +8,7 @@ class BulkSearchItem
     var $sVerifyLevel;
     var $sInputAddress;
 
-    function BulkSearchItem($result)
+    function __construct($result)
         {
             if (isset($result->QAAddress))
             $this->fAddress         =new FormattedAddress($result);
